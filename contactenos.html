@@ -1,0 +1,112 @@
+
+<!DOCTYPE html>
+  <html>
+    <head>
+      <title>UniCol</title>
+      <meta charset="utf-8">
+      <link rel=”Shortcut Icon” href=”img/icono.ico” type=”image/x-icon” />
+      <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+       <link rel="stylesheet" rel="stylesheet" href="css/materialize.css"/>
+      <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+      <script type="text/javascript" src="js/materialize.min.js"></script>
+      <script src="https://code.jquery.com/jquery-latest.js"></script>
+    </head>
+    <body>
+      <script type="text/javascript">
+        function enviar(){
+          var nombre = document.getElementById('first_name').value;
+          var apellido = document.getElementById('last_name').value;
+          var telefono = document.getElementById('telephone').value;
+          var email = document.getElementById('email').value;
+          var comentario = document.getElementById('commentary').value;
+
+          var dataen = 'nombre='+nombre +'&apellido='+apellido +'&telefono='+telefono +'&email='+email +'&comentario='+comentario;
+          $.ajax({
+            type:'POST',
+            url:'php/post_formulario.php',
+            data:dataen,
+            success:function(resp){
+              $("#respa").html(resp);
+            }
+          });
+          return false;
+        }
+        function redireccionarPagina() {
+          window.location = "";
+        }
+      </script>
+      <header>
+        <nav>               
+          <div class="container">
+            <div class="row">
+              <div class="col s2">
+                <a href="inicio.php" class="brand-logo"><img src="img/navbar/sueter.png"></a>               
+              </div>
+              <div class="col s10">
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                  <li><a href="productos.php">Productos</a></li>
+                  <li><a href="productos.php">Ofertas <span class="new badge">4 Productos </span></a></li>
+                  <li><a href="nosotros.php">Nosotros</a></li>
+                  <li><a href="Contactenos.html">Contactenos</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </header>
+      <br><br><br><br>
+      <div class="container">
+        <div class="row">
+          <div class="col s12">
+            <div class="card-panel teal lighten-2"><h4 class="header" style="color: white" align="center">Envianos tus Datos</h4></div>        
+          </div>
+          <form class="col s12" method="POST" onsubmit="return enviar();"> 
+              <div class="input-field col s12">
+                <i class="material-icons prefix">account_circle</i>
+                <input id="first_name" type="text" class="validate">
+                <label for="icon_prefix">Nombres</label>
+              </div>
+              <div class="input-field col s12">
+                <i class="material-icons prefix">account_circle</i>
+                <input id="last_name" type="text" class="validate">
+                <label for="icon_prefix">Apellidos</label>
+              </div>
+              <div class="input-field col s12">
+                <i class="material-icons prefix">phone</i>
+                <input id="telephone" type="tel" class="validate">
+                <label for="icon_telephone">Telephone</label>
+              </div>
+              <div class="input-field col s12">
+                <i class="material-icons prefix">email</i>
+                <input id="email" type="email" class="validate">
+                <label for="email">Correo electronico</label>
+              </div>
+              <div class="input-field col s12">
+                <textarea id="commentary" class="materialize-textarea"></textarea>
+                <label for="textarea1">Comentarios</label>
+              </div>
+              <div class="col s10 offset-s10">
+                <button class="btn waves-effect waves-light" type="submit" name="action" onclick="Materialize.toast('Formulario Enviado', 4000)">Enviar
+                  <i class="material-icons right">send</i>
+                </button>
+              </div>
+          </form>
+          <div class="input-field col s12">
+            <p id="respa"></p>
+          </div>
+        </div>
+      </div>
+      <br><br><br><br>
+      <footer class="page-footer">
+        <div class="footer-copyright">
+          <div class="container">
+          © 2017 Copyright Text
+          <a class="grey-text text-lighten-4 right" href="#!">Walter Guevara</a>
+          </div>
+        </div>
+      </footer>
+    </body>
+  </html>
